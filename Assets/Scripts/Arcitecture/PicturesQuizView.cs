@@ -19,42 +19,9 @@ public class PicturesQuizView : MonoBehaviour, IQuizView
     private int _correctAnswer;
     private List<CustomButton> _currentButtons = new List<CustomButton>();
     private bool _isCurrentQuestionAnswered = false;
-    
-    private void SetQuestionImage(Sprite questionImage)
-    {
-        _questionImage.sprite = questionImage;
-    }
 
-    private void PushAnswerButtonToView(CustomButton newButton)
-    {
-        newButton.transform.parent = _questionButtonsGroup.transform;
-        newButton.transform.localScale = Vector3.one;
-        
-        _currentButtons.Add(newButton);
-    }
 
-    private void SetQuestionText(string questionText)
-    {
-        _questionText.text = questionText;
-    }
-
-    private void ClearAnswerButtons()
-    {
-        foreach(CustomButton button in _currentButtons)
-        {
-            Destroy(button.gameObject);
-        }
-
-        _currentButtons.Clear();
-    }
-    
-    private CustomButton InstantiateAnswerButton(string answerText, Action buttonAction)
-    {
-        CustomButton button = Instantiate(_questionButtonPrefab);
-        button.InitButton(answerText, buttonAction);
-        
-        return button;
-    }
+    #region public methods
 
     public void OnAnswerButtonClick(int clickedButtonIndex)
     {
@@ -108,7 +75,49 @@ public class PicturesQuizView : MonoBehaviour, IQuizView
 
     public void SetQuestionCounterText(int questionAmount, int currentQuestionId)
     {
-        _questionCounter.text = $"{currentQuestionId}/{questionAmount}";
+        _questionCounter.text = $"{currentQuestionId + 1}/{questionAmount}";
     }
+
+    #endregion
+
+    #region private methods
+
+    private void SetQuestionImage(Sprite questionImage)
+    {
+        _questionImage.sprite = questionImage;
+    }
+
+    private void PushAnswerButtonToView(CustomButton newButton)
+    {
+        newButton.transform.parent = _questionButtonsGroup.transform;
+        newButton.transform.localScale = Vector3.one;
+        
+        _currentButtons.Add(newButton);
+    }
+
+    private void SetQuestionText(string questionText)
+    {
+        _questionText.text = questionText;
+    }
+
+    private void ClearAnswerButtons()
+    {
+        foreach(CustomButton button in _currentButtons)
+        {
+            Destroy(button.gameObject);
+        }
+
+        _currentButtons.Clear();
+    }
+    
+    private CustomButton InstantiateAnswerButton(string answerText, Action buttonAction)
+    {
+        CustomButton button = Instantiate(_questionButtonPrefab);
+        button.InitButton(answerText, buttonAction);
+        
+        return button;
+    }
+
+    #endregion
 }
 

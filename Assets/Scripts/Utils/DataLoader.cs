@@ -17,7 +17,6 @@ public class DataLoader
         }
 
         string json = File.ReadAllText(filename);
-
         List<T> itemsList = JsonConvert.DeserializeObject<List<T>>(json);
 
         return itemsList;
@@ -74,9 +73,13 @@ public class DataLoader
         {
             n--;
             int k = rng.Next(n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
+            (list[k], list[n]) = (list[n], list[k]);
         }
+    }
+    
+    public static long GetTimeStamp()
+    {
+        long timestamp = (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+        return timestamp;
     }
 }

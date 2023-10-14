@@ -11,29 +11,17 @@ public class PicturesQuizController: IQuizController
     private List<PicturesQuizQuestion> _quizQuestions = new List<PicturesQuizQuestion>();
     private int _currentQuestionIndex;
     private int _currentScore = 0;
+    private string _resultFilePath = "picturesResult.json";
+    private ResultSavingManager _resultSavingManager;
+
+    #region public methods
+
     public PicturesQuizController(PicturesQuizView quizView)
     {
         _quizView = quizView;
         _quizQuestions = LoadQuizQuestions();
     }
     
-    private List<PicturesQuizQuestion> LoadQuizQuestions()
-    {
-        string questionsJsonName = (DataLoader.BuildStreamingAssetPath("picturesQuestions.json"));
-        List<PicturesQuizQuestion> quizQuestions = DataLoader.GetListFromJSON<PicturesQuizQuestion>(questionsJsonName);
-        
-        Debug.Log($"Loaded {quizQuestions.Count} questions from file");
-
-        List<PicturesQuizQuestion> randomizedQuestions = (DataLoader.GetRandomElements(quizQuestions, 7));
-        DataLoader.Shuffle(randomizedQuestions);
-        return randomizedQuestions;
-    }
-    
-    private void OnQuesionsEnds()
-    {
-        Debug.Log($"There is no more questions!!!");
-    }
-
     public void StartNewGame()
     {
         if (_quizQuestions.Count == 0)
@@ -75,4 +63,36 @@ public class PicturesQuizController: IQuizController
     {
         return _currentScore;
     }
+
+    #endregion
+
+    #region private methods
+
+    private List<PicturesQuizQuestion> LoadQuizQuestions()
+    {
+        string questionsJsonName = (DataLoader.BuildStreamingAssetPath("picturesQuestions.json"));
+        List<PicturesQuizQuestion> quizQuestions = DataLoader.GetListFromJSON<PicturesQuizQuestion>(questionsJsonName);
+        
+        Debug.Log($"Loaded {quizQuestions.Count} questions from file");
+
+        List<PicturesQuizQuestion> randomizedQuestions = (DataLoader.GetRandomElements(quizQuestions, 7));
+        DataLoader.Shuffle(randomizedQuestions);
+        return randomizedQuestions;
+    }
+    
+    private void OnQuesionsEnds()
+    {
+        Debug.Log($"There is no more questions!!!");
+        
+        _resultSavingManager = new ResultSavingManager(_resultFilePath);
+        if(_resultSavingManager.IsScoreInTop(_currentScore))
+        {
+            Debug.Log("Saving data");
+            _resultSavingManager.AddResult(new QuizResult(_currentScore, "Unnamed player", DataLoader.GetTimeStamp()));
+        }
+        
+    }
+
+    #endregion
+
 }

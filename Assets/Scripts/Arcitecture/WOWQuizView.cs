@@ -14,13 +14,16 @@ public class WOWQuizView : MonoBehaviour, IQuizView
     [SerializeField] private TMP_Text _questionCounter;
     [SerializeField] private AlphaTransition _questionLayoutAlpha;
     [SerializeField] private AlphaTransition _questionInfoAlpha;
-    
+    [SerializeField] private InfoLayout _infoLayoutController;
+     
     private WOWQuizController _quizController;
     private int _correctAnswer;
     private bool _isCurrentQuestionAnswered = false;
     private List<CustomButton> _currentButtons = new List<CustomButton>();
     private bool _isQuestionInfoShown = false;
-    
+
+    #region public methods
+
     public void SetQuestion(AbstractQuizQuestion question)
     {
         _isCurrentQuestionAnswered = false;
@@ -39,36 +42,8 @@ public class WOWQuizView : MonoBehaviour, IQuizView
             });
             PushAnswerButtonToView(button);
         };
-    }
-    
-    private CustomButton InstantiateAnswerButton(string answerText, Action buttonAction)
-    {
-        CustomButton button = Instantiate(_questionButtonPrefab);
-        button.InitButton(answerText, buttonAction);
         
-        return button;
-    }
-    
-    private void PushAnswerButtonToView(CustomButton newButton)
-    {
-        newButton.transform.parent = _questionButtonsGroup.transform;
-        newButton.transform.localScale = Vector3.one;
-        
-        _currentButtons.Add(newButton);
-    }
-    
-    private void ClearAnswerButtons()
-    {
-        foreach(CustomButton button in _currentButtons)
-        {
-            Destroy(button.gameObject);
-        }
-        _currentButtons.Clear();
-    }
-    
-    private void SetQuestionText(string questionText)
-    {
-        _questionText.text = questionText;
+        _infoLayoutController.SetInfoLayout(q.Info, q.InfoPicturePath);
     }
     
     public void OnAnswerButtonClick(int clickedButtonIndex)
@@ -92,6 +67,11 @@ public class WOWQuizView : MonoBehaviour, IQuizView
 
     public void SetNextSection()
     {
+        if (!_isCurrentQuestionAnswered && !_isQuestionInfoShown)
+        {
+            return;
+        }
+        
         if(_isQuestionInfoShown)
         {
             _questionInfoAlpha.StartFadeOut();
@@ -111,4 +91,46 @@ public class WOWQuizView : MonoBehaviour, IQuizView
     {
         _quizController = controller;
     }
+    
+    public void SetQuestionCounterText(int questionAmount, int currentQuestionId)
+    {
+        _questionCounter.text = $"{currentQuestionId + 1}/{questionAmount}";
+    }
+
+    #endregion
+
+    #region private methods
+
+    private CustomButton InstantiateAnswerButton(string answerText, Action buttonAction)
+    {
+        CustomButton button = Instantiate(_questionButtonPrefab);
+        button.InitButton(answerText, buttonAction);
+        
+        return button;
+    }
+    
+    private void PushAnswerButtonToView(CustomButton newButton)
+    {
+        var buttonTransform = newButton.transform;
+        buttonTransform.parent = _questionButtonsGroup.transform;
+        buttonTransform.localScale = Vector3.one;
+        
+        _currentButtons.Add(newButton);
+    }
+    
+    private void ClearAnswerButtons()
+    {
+        foreach(CustomButton button in _currentButtons)
+        {
+            Destroy(button.gameObject);
+        }
+        _currentButtons.Clear();
+    }
+    
+    private void SetQuestionText(string questionText)
+    {
+        _questionText.text = questionText;
+    }
+
+    #endregion
 }
