@@ -44,6 +44,13 @@ public class WOWQuizView : MonoBehaviour, IQuizView
         };
         
         _infoLayoutController.SetInfoLayout(q.Info, q.InfoPicturePath);
+        /*StartCoroutine(DelayedSetInfoLayout(q.Info, q.InfoPicturePath));*/
+    }
+
+    public IEnumerator DelayedSetInfoLayout(string info, string infoPicturePath)
+    {
+        yield return new WaitForSeconds(1f);
+        _infoLayoutController.SetInfoLayout(info, infoPicturePath);
     }
     
     public void OnAnswerButtonClick(int clickedButtonIndex)
@@ -62,7 +69,7 @@ public class WOWQuizView : MonoBehaviour, IQuizView
         }
          
         _nextQuestionButton.gameObject.SetActive(true);
-        _nextQuestionButton.GetComponent<AlphaTransition>().StartFadeIn(1);
+        _nextQuestionButton.GetComponent<AlphaTransition>().StartFadeIn(0.5f);
     }
 
     public void SetNextSection()
@@ -74,14 +81,19 @@ public class WOWQuizView : MonoBehaviour, IQuizView
         
         if(_isQuestionInfoShown)
         {
-            _questionInfoAlpha.StartFadeOut();
+            /*_questionInfoAlpha.StartFadeOut();*/
+            _questionInfoAlpha.SetTransparent();
+            _questionLayoutAlpha.SetOpaque();
             _quizController.SetNewQuestion();
-            _questionLayoutAlpha.StartFadeIn();
+            
+            /*_questionLayoutAlpha.StartFadeIn();*/
         }
         else
         {
-            _questionInfoAlpha.StartFadeIn();
-            _questionLayoutAlpha.StartFadeOut();
+            /*_questionInfoAlpha.StartFadeIn();
+            _questionLayoutAlpha.StartFadeOut();*/
+            _questionInfoAlpha.SetOpaque();
+            _questionLayoutAlpha.SetTransparent();
             _isQuestionInfoShown = true;
         }
         

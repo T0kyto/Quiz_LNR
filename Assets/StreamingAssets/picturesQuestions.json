@@ -2,10 +2,10 @@
 	{
 		"question": "Кто изображен на картинке? 1",
 		"answers": [
-			"This is the first answer",
-			"This is the second answer",
-			"This is the third answer",
-			"This is the fourth anwer"
+			"Первый ответ",
+			"Второй ответ",
+			"Третий ответ",
+			"Четвертый ответ"
 		],
 		"answerIndex": 3,
 		"imagePath": "1q"
@@ -13,10 +13,10 @@
 	{
 		"question": "Кто изображен на картинке? 2",
 		"answers": [
-			"This is the first answer",
-			"This is the second answer",
-			"This is the third answer",
-			"This is the fourth anwer"
+			"Первый ответ",
+			"Второй ответ",
+			"Третий ответ",
+			"Четвертый ответ"
 		],
 		"answerIndex": 2,
 		"imagePath": "2q"
@@ -24,10 +24,10 @@
 	{
 		"question": "Кто изображен на картинке? 3",
 		"answers": [
-			"This is the first answer",
-			"This is the second answer",
-			"This is the third answer",
-			"This is the fourth anwer"
+			"Первый ответ",
+			"Второй ответ",
+			"Третий ответ",
+			"Четвертый ответ"
 		],
 		"answerIndex": 1,
 		"imagePath": "3q"
@@ -35,10 +35,10 @@
 	{
 		"question": "Кто изображен на картинке? 4",
 		"answers": [
-			"This is the first answer",
-			"This is the second answer",
-			"This is the third answer",
-			"This is the fourth anwer"
+			"Первый ответ",
+			"Второй ответ",
+			"Третий ответ",
+			"Четвертый ответ"
 		],
 		"answerIndex": 0,
 		"imagePath": "4q"
@@ -46,10 +46,10 @@
 	{
 		"question": "Кто изображен на картинке? 5",
 		"answers": [
-			"This is the first answer",
-			"This is the second answer",
-			"This is the third answer",
-			"This is the fourth anwer"
+			"Первый ответ",
+			"Второй ответ",
+			"Третий ответ",
+			"Четвертый ответ"
 		],
 		"answerIndex": 2,
 		"imagePath": "5q"
@@ -57,10 +57,10 @@
 	{
 		"question": "Кто изображен на картинке? 6",
 		"answers": [
-			"This is the first answer",
-			"This is the second answer",
-			"This is the third answer",
-			"This is the fourth anwer"
+			"Первый ответ",
+			"Второй ответ",
+			"Третий ответ",
+			"Четвертый ответ"
 		],
 		"answerIndex": 1,
 		"imagePath": "6q"

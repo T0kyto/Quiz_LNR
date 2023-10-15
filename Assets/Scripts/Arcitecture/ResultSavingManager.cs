@@ -54,6 +54,11 @@ public class ResultSavingManager
         return false;
     }
 
+    public IReadOnlyList<QuizResult> GetResults()
+    {
+        return _quizResults;
+    }
+
     #endregion
 
     #region private methods
@@ -71,6 +76,8 @@ public class ResultSavingManager
 
         string json = JsonConvert.SerializeObject(_quizResults.ToArray());
         File.WriteAllText(_dataPath, json);
+        
+        LoadResults();
     }
     
     private void LoadResults()

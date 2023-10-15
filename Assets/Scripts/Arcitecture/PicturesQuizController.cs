@@ -1,9 +1,7 @@
+
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PicturesQuizController: IQuizController
 {
@@ -13,6 +11,7 @@ public class PicturesQuizController: IQuizController
     private int _currentScore = 0;
     private string _resultFilePath = "picturesResult.json";
     private ResultSavingManager _resultSavingManager;
+    private LeaderBoardController _leaderBoardController;
 
     #region public methods
 
@@ -63,6 +62,11 @@ public class PicturesQuizController: IQuizController
     {
         return _currentScore;
     }
+    
+    public void SetLeaderBoardController(LeaderBoardController lbController)
+    {
+        _leaderBoardController = lbController;
+    }
 
     #endregion
 
@@ -82,17 +86,67 @@ public class PicturesQuizController: IQuizController
     
     private void OnQuesionsEnds()
     {
-        Debug.Log($"There is no more questions!!!");
-        
         _resultSavingManager = new ResultSavingManager(_resultFilePath);
-        if(_resultSavingManager.IsScoreInTop(_currentScore))
+        
+        _quizView.gameObject.SetActive(false);
+        _leaderBoardController.SetTable((List<QuizResult>)_resultSavingManager.GetResults());
+        _leaderBoardController.gameObject.SetActive(true);
+        
+        if (_resultSavingManager.IsScoreInTop(_currentScore)) // Если текущий набранный счет попадает в таблицу лидеров
         {
             Debug.Log("Saving data");
-            _resultSavingManager.AddResult(new QuizResult(_currentScore, "Unnamed player", DataLoader.GetTimeStamp()));
+            
+            _leaderBoardController.ShowInputField(_currentScore);
+            _leaderBoardController.SetSavingManager(_resultSavingManager);
         }
-        
+        else
+        {
+            _leaderBoardController.HideInputField();
+        }
     }
 
     #endregion
 
 }
+
+/*
+public class PicturesQuizController : AbstractQuizController<PicturesQuizQuestion>
+{
+    public PicturesQuizController(PicturesQuizView quizView) : base(quizView)
+    {
+        
+    }
+    public override List<PicturesQuizQuestion> LoadQuizQuestions()
+    {
+        string questionsJsonName = (DataLoader.BuildStreamingAssetPath("picturesQuestions.json"));
+        List<PicturesQuizQuestion> quizQuestions = DataLoader.GetListFromJSON<PicturesQuizQuestion>(questionsJsonName);
+        
+        Debug.Log($"Loaded {quizQuestions.Count} questions from file");
+
+        List<PicturesQuizQuestion> randomizedQuestions = (DataLoader.GetRandomElements(quizQuestions, 7));
+        DataLoader.Shuffle(randomizedQuestions);
+        return randomizedQuestions;
+    }
+
+    public override void OnQuesionsEnds()
+    {
+        _resultSavingManager = new ResultSavingManager(_resultFilePath);
+        
+        _quizView.gameObject.SetActive(false);
+        _leaderBoardController.SetTable((List<QuizResult>)_resultSavingManager.GetResults());
+        _leaderBoardController.gameObject.SetActive(true);
+        
+        if (_resultSavingManager.IsScoreInTop(_currentScore)) // Если текущий набранный счет попадает в таблицу лидеров
+        {
+            Debug.Log("Saving data");
+            
+            _leaderBoardController.ShowInputField(_currentScore);
+            _leaderBoardController.SetSavingManager(_resultSavingManager);
+        }
+        else
+        {
+            _leaderBoardController.HideInputField();
+        }
+    }
+}*/
+

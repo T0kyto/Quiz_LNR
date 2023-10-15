@@ -116,7 +116,7 @@ public class PicturesQuizView : MonoBehaviour, IQuizView
         button.InitButton(answerText, buttonAction);
         
         return button;
-    }
+    }     
 
     #endregion
 }

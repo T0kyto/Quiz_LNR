@@ -39,6 +39,8 @@ public class AlphaTransition: MonoBehaviour
             _canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, t);
             yield return null;
         }
+
+        _canvasGroup.alpha = endAlpha;
     }
     
     private IEnumerator FadeInAndOut(float fadeInDuration, float fadeOutDuration, float delayDuration)

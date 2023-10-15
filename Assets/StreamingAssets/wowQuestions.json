@@ -1,170 +1,170 @@
 [
   {
-    "question": "question1",
+    "question":  "Вопрос первый",
     "answers": [
-      "This is the first answer",
-      "This is the second answer",
-      "This is the third answer",
-      "This is the fourth anwer"
+      "Первый ответ",
+      "Второй ответ",
+      "Третий ответ",
+      "Четвертый ответ"
     ],
     "answerIndex": 0,
-    "info": "This is the info about question 1",
+    "info": "Пояснение к первому вопросу",
     "infoPicturePath": "info1.jpeg"
   },
   {
-    "question": "question2",
+    "question": "Вопрос второй",
     "answers": [
-      "This is the first answer",
-      "This is the second answer",
-      "This is the third answer",
-      "This is the fourth anwer"
+      "Первый ответ",
+      "Второй ответ",
+      "Третий ответ",
+      "Четвертый ответ"
     ],
     "answerIndex": 0,
-    "info": "This is the info about question 2",
+    "info": "Пояснение ко второму вопросу",
     "infoPicturePath": "info2.jpeg"
   },
   {
-    "question": "question3",
+    "question": "Вопрос третий",
     "answers": [
-      "This is the first answer",
-      "This is the second answer",
-      "This is the third answer",
-      "This is the fourth anwer"
+      "Первый ответ",
+      "Второй ответ",
+      "Третий ответ",
+      "Четвертый ответ"
     ],
     "answerIndex": 0,
-    "info": "This is the info about question 3",
+    "info": "Пояснение к третьему вопросу",
     "infoPicturePath": ""
   },
   {
-    "question": "question4",
+    "question": "Вопрос четвертый",
     "answers": [
-      "This is the first answer",
-      "This is the second answer",
-      "This is the third answer",
-      "This is the fourth anwer"
+      "Первый ответ",
+      "Второй ответ",
+      "Третий ответ",
+      "Четвертый ответ"
     ],
     "answerIndex": 0,
-    "info": "This is the info about question 4",
+    "info": "Пояснение к четвертому вопросу",
     "infoPicturePath": "info3.jpeg"
   },
   {
-  "question": "question5",
+  "question": "Вопрос пятый",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ], 
   "answerIndex": 0,
-  "info": "This is the info about question 5",
+  "info": "Пояснение к пятому вопросу",
   "infoPicturePath": ""
   },
   {
-  "question": "question6",
+  "question": "Вопрос шестой",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 6",
+  "info": "Пояснение к шестому вопросу",
   "infoPicturePath": "info4.jpeg"
   },
   {
-  "question": "question7",
+  "question": "Вопрос седьмой",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 7",
+  "info": "Пояснение к седьмому вопросу",
   "infoPicturePath": ""
   },
   {
-  "question": "question8",
+  "question": "Вопрос восьмой",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 8",
+  "info": "Пояснение к восьмому вопросу",
   "infoPicturePath": "info5.jpeg"
   },
   {
-  "question": "question9",
+  "question": "Вопрос девятый",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 9",
+  "info": "Пояснение к девятому вопросу",
   "infoPicturePath": ""
   },
   {
-  "question": "question10",
+  "question": "Вопрос десятый",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 10",
+  "info": "Пояснение к десятому вопросу",
   "infoPicturePath": "info6.jpeg"
   },
   {
-  "question": "question11",
+  "question": "Вопрос одиннадцатый",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 11",
+  "info": "Пояснение к одиннадцатому вопросу",
   "infoPicturePath": ""
   },
   {
-  "question": "question12",
+  "question": "Вопрос двеннадцатый",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 12",
+  "info": "Пояснение к двенадцатому вопросу",
   "infoPicturePath": "info7.jpeg"
   },
   {
-  "question": "question13",
+  "question": "Вопрос четырнадцатый",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 13",
+  "info": "Пояснение к тринадцатому вопросу",
   "infoPicturePath": ""
   },
   {
-  "question": "question14",
+  "question": "Вопрос пятнадцатый",
   "answers": [
-    "This is the first answer",
-    "This is the second answer",
-    "This is the third answer",
-    "This is the fourth anwer"
+    "Первый ответ",
+    "Второй ответ",
+    "Третий ответ",
+    "Четвертый ответ"
   ],
   "answerIndex": 0,
-  "info": "This is the info about question 14",
+  "info": "Пояснение к четырнадцатому вопросу",
   "infoPicturePath": "info7.jpeg"
 }
 ]
