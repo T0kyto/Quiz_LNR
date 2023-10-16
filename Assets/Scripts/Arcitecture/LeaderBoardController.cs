@@ -19,7 +19,7 @@ public class LeaderBoardController : MonoBehaviour
     private List<GameObject> _currentRows = new List<GameObject>();
 
     #region public methods
-    public void SetTable(List<QuizResult> results)
+    public void SetLeaderBoard(List<QuizResult> results)
     {
         ClearCurrentLeaderboard();
         
@@ -63,7 +63,7 @@ public class LeaderBoardController : MonoBehaviour
                     timestamp
                 ));
             
-            SetTable((List<QuizResult>)_savingManager.GetResults());
+            SetLeaderBoard((List<QuizResult>)_savingManager.GetResults());
             _DataInputField.SetActive(false);
         }
         else

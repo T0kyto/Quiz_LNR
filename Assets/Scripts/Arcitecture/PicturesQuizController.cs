@@ -28,7 +28,7 @@ public class PicturesQuizController : AbstractQuizController<PicturesQuizQuestio
         _resultSavingManager = new ResultSavingManager(_resultFilePath);
         
         AbstractQuizView.gameObject.SetActive(false);
-        _leaderBoardController.SetTable((List<QuizResult>)_resultSavingManager.GetResults());
+        _leaderBoardController.SetLeaderBoard((List<QuizResult>)_resultSavingManager.GetResults());
         _leaderBoardController.gameObject.SetActive(true);
         
         if (_resultSavingManager.IsScoreInTop(_currentScore)) // Если текущий набранный счет попадает в таблицу лидеров
