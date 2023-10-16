@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PicturesQuizView : MonoBehaviour, IQuizView
+public class PicturesQuizView : AbstractQuizView
 {
     [SerializeField] private Image _questionImage;
     [SerializeField] private GridLayoutGroup _questionButtonsGroup;
@@ -15,7 +15,7 @@ public class PicturesQuizView : MonoBehaviour, IQuizView
     [SerializeField] private CustomButton _questionButtonPrefab;
     [SerializeField] private Button _nextQuestionButton;
     [SerializeField] private TMP_Text _questionCounter;
-    private PicturesQuizController _quizController;
+    private IQuizController _quizController;
     private int _correctAnswer;
     private List<CustomButton> _currentButtons = new List<CustomButton>();
     private bool _isCurrentQuestionAnswered = false;
@@ -23,25 +23,7 @@ public class PicturesQuizView : MonoBehaviour, IQuizView
 
     #region public methods
 
-    public void OnAnswerButtonClick(int clickedButtonIndex)
-    {
-        if (_isCurrentQuestionAnswered)
-        {
-            return;
-        }
-        
-        _currentButtons[clickedButtonIndex].SetAnswerColor(clickedButtonIndex == _correctAnswer);
-        _isCurrentQuestionAnswered = true;
-
-        if (clickedButtonIndex == _correctAnswer)
-        {
-            _quizController.IncreaseScore();
-        }
-        
-        _nextQuestionButton.gameObject.SetActive(true);
-        _nextQuestionButton.GetComponent<AlphaTransition>().StartFadeIn(1);
-    }
-    public void SetQuestion(AbstractQuizQuestion question)
+    public override void SetQuestion(AbstractQuizQuestion question)
     {
         _isCurrentQuestionAnswered = false;
         ClearAnswerButtons();
@@ -63,20 +45,41 @@ public class PicturesQuizView : MonoBehaviour, IQuizView
             
     }
 
-    public void SetQuizController(PicturesQuizController controller)
+    public override void SetQuizController(IQuizController controller)
     {
         _quizController = controller;
     }
-
+    
+    public override void SetQuestionCounterText(int questionAmount, int currentQuestionId)
+    {
+        _questionCounter.text = $"{currentQuestionId + 1}/{questionAmount}";
+    }
+    
     public void SetNextQuestion()
     {
         _quizController.SetNewQuestion();
     }
-
-    public void SetQuestionCounterText(int questionAmount, int currentQuestionId)
+    
+    
+    public void OnAnswerButtonClick(int clickedButtonIndex)
     {
-        _questionCounter.text = $"{currentQuestionId + 1}/{questionAmount}";
+        if (_isCurrentQuestionAnswered)
+        {
+            return;
+        }
+        
+        _currentButtons[clickedButtonIndex].SetAnswerColor(clickedButtonIndex == _correctAnswer);
+        _isCurrentQuestionAnswered = true;
+
+        if (clickedButtonIndex == _correctAnswer)
+        {
+            _quizController.IncreaseScore();
+        }
+        
+        _nextQuestionButton.gameObject.SetActive(true);
+        _nextQuestionButton.GetComponent<AlphaTransition>().StartFadeIn(1);
     }
+
 
     #endregion
 
@@ -89,7 +92,7 @@ public class PicturesQuizView : MonoBehaviour, IQuizView
 
     private void PushAnswerButtonToView(CustomButton newButton)
     {
-        newButton.transform.parent = _questionButtonsGroup.transform;
+        newButton.transform.SetParent(_questionButtonsGroup.transform);
         newButton.transform.localScale = Vector3.one;
         
         _currentButtons.Add(newButton);

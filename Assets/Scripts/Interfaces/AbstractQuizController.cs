@@ -1,25 +1,23 @@
-/*
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractQuizController<T>
+public abstract class AbstractQuizController<T> where T : AbstractQuizQuestion
 {
-    protected AbstractQuizView _quizView;
-    private List<T> _quizQuestions;
-    private int _currentQuestionIndex;
+    protected AbstractQuizView AbstractQuizView;
+    protected List<T> _quizQuestions;
+    protected int _currentQuestionIndex;
     protected int _currentScore = 0;
-    protected string _resultFilePath;
     protected ResultSavingManager _resultSavingManager;
     protected LeaderBoardController _leaderBoardController;
 
     #region public methods
 
-    public AbstractQuizController(PicturesQuizView quizView)
+    public AbstractQuizController(AbstractQuizView abstractQuizView)
     {
-        _quizView = quizView;
-        _quizQuestions = LoadQuizQuestions();
+        AbstractQuizView = abstractQuizView;
+        LoadQuizQuestions();
     }
     
 
@@ -32,8 +30,8 @@ public abstract class AbstractQuizController<T>
 
         _currentScore = 0;
         _currentQuestionIndex = 0;
-        _quizView.SetQuestion(_quizQuestions[_currentQuestionIndex]);
-        _quizView.SetQuestionCounterText(_quizQuestions.Count, _currentQuestionIndex);
+        AbstractQuizView.SetQuestion(_quizQuestions[_currentQuestionIndex]);
+        AbstractQuizView.SetQuestionCounterText(_quizQuestions.Count, _currentQuestionIndex);
     }
     
     public void SetNewQuestion()
@@ -49,8 +47,8 @@ public abstract class AbstractQuizController<T>
         if (_currentQuestionIndex + 1 <= lastQuestionIndex)
         {
             ++_currentQuestionIndex;
-            _quizView.SetQuestion(_quizQuestions[_currentQuestionIndex]);
-            _quizView.SetQuestionCounterText(_quizQuestions.Count, _currentQuestionIndex);
+            AbstractQuizView.SetQuestion(_quizQuestions[_currentQuestionIndex]);
+            AbstractQuizView.SetQuestionCounterText(_quizQuestions.Count, _currentQuestionIndex);
         }
     }
     
@@ -69,9 +67,8 @@ public abstract class AbstractQuizController<T>
 
     #region abstract methods
 
-    public abstract List<T> LoadQuizQuestions();
-    public abstract void OnQuesionsEnds();
+    protected abstract void LoadQuizQuestions();
+    protected abstract void OnQuesionsEnds();
 
     #endregion
 }
-*/

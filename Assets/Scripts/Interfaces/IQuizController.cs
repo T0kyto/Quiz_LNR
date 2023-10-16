@@ -5,4 +5,6 @@ public interface IQuizController
     public void SetNewQuestion();
 
     public void SetLeaderBoardController(LeaderBoardController lbController);
+
+    public void IncreaseScore();
 }

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WOWQuizView : MonoBehaviour, IQuizView
+public class WowQuizView : AbstractQuizView
 {
     [SerializeField] private GridLayoutGroup _questionButtonsGroup;
     [SerializeField] private TMP_Text _questionText;
@@ -16,7 +16,7 @@ public class WOWQuizView : MonoBehaviour, IQuizView
     [SerializeField] private AlphaTransition _questionInfoAlpha;
     [SerializeField] private InfoLayout _infoLayoutController;
      
-    private WOWQuizController _quizController;
+    private IQuizController _quizController;
     private int _correctAnswer;
     private bool _isCurrentQuestionAnswered = false;
     private List<CustomButton> _currentButtons = new List<CustomButton>();
@@ -24,7 +24,7 @@ public class WOWQuizView : MonoBehaviour, IQuizView
 
     #region public methods
 
-    public void SetQuestion(AbstractQuizQuestion question)
+    public override void SetQuestion(AbstractQuizQuestion question)
     {
         _isCurrentQuestionAnswered = false;
         _isQuestionInfoShown = false;
@@ -44,13 +44,16 @@ public class WOWQuizView : MonoBehaviour, IQuizView
         };
         
         _infoLayoutController.SetInfoLayout(q.Info, q.InfoPicturePath);
-        /*StartCoroutine(DelayedSetInfoLayout(q.Info, q.InfoPicturePath));*/
     }
-
-    public IEnumerator DelayedSetInfoLayout(string info, string infoPicturePath)
+    
+    public override void SetQuizController(IQuizController controller)
     {
-        yield return new WaitForSeconds(1f);
-        _infoLayoutController.SetInfoLayout(info, infoPicturePath);
+        _quizController = controller;
+    }
+    
+    public override void SetQuestionCounterText(int questionAmount, int currentQuestionId)
+    {
+        _questionCounter.text = $"{currentQuestionId + 1}/{questionAmount}";
     }
     
     public void OnAnswerButtonClick(int clickedButtonIndex)
@@ -81,34 +84,18 @@ public class WOWQuizView : MonoBehaviour, IQuizView
         
         if(_isQuestionInfoShown)
         {
-            /*_questionInfoAlpha.StartFadeOut();*/
             _questionInfoAlpha.SetTransparent();
             _questionLayoutAlpha.SetOpaque();
             _quizController.SetNewQuestion();
-            
-            /*_questionLayoutAlpha.StartFadeIn();*/
         }
         else
         {
-            /*_questionInfoAlpha.StartFadeIn();
-            _questionLayoutAlpha.StartFadeOut();*/
             _questionInfoAlpha.SetOpaque();
             _questionLayoutAlpha.SetTransparent();
             _isQuestionInfoShown = true;
         }
         
     }
-
-    public void SetQuizController(WOWQuizController controller)
-    {
-        _quizController = controller;
-    }
-    
-    public void SetQuestionCounterText(int questionAmount, int currentQuestionId)
-    {
-        _questionCounter.text = $"{currentQuestionId + 1}/{questionAmount}";
-    }
-
     #endregion
 
     #region private methods
@@ -124,7 +111,7 @@ public class WOWQuizView : MonoBehaviour, IQuizView
     private void PushAnswerButtonToView(CustomButton newButton)
     {
         var buttonTransform = newButton.transform;
-        buttonTransform.parent = _questionButtonsGroup.transform;
+        buttonTransform.SetParent(_questionButtonsGroup.transform);
         buttonTransform.localScale = Vector3.one;
         
         _currentButtons.Add(newButton);

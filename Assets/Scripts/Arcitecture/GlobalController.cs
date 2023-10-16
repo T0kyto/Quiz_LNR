@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GlobalController : MonoBehaviour
 {
     private IQuizController _currentQuizController;
     [SerializeField] private PicturesQuizView _picturesQuizView;
-    [SerializeField] private WOWQuizView _wowQuizView;
+    [SerializeField] private WowQuizView _wowQuizView;
     [SerializeField] private LeaderBoardController _leaderBoardController;
 
     public void OnStartWOWQuizClick()

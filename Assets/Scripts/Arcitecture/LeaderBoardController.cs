@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class LeaderBoardController : MonoBehaviour
@@ -13,30 +14,31 @@ public class LeaderBoardController : MonoBehaviour
     [SerializeField] private GameObject _DataInputField;
     [SerializeField] private TMP_Text _currentScoreText;
     [SerializeField] private TMP_InputField _nameInputField;
+    [SerializeField] private UnityEvent _onContinue;
     private ResultSavingManager _savingManager;
     private List<GameObject> _currentRows = new List<GameObject>();
 
     #region public methods
     public void SetTable(List<QuizResult> results)
     {
-        ClearCurrentRows();
+        ClearCurrentLeaderboard();
         
         List<QuizResult> cuttedResults = results.Take(10).ToList();
         
         foreach (QuizResult result in cuttedResults)
         {
-            PushRowToTable(result);
+            PushRowToLeaderboard(result);
         }
     }
 
-    public void ShowInputField(int score)
+    public void ShowNameInputField(int score) // Показывает поле ввода имени
     {
         _DataInputField.SetActive(true);
         _nameInputField.text = "";
         _currentScoreText.text = score.ToString();
     }
 
-    public void HideInputField()
+    public void HideNameInputField()
     {
         _DataInputField.SetActive(false);
     }
@@ -46,9 +48,9 @@ public class LeaderBoardController : MonoBehaviour
         _savingManager = manager;
     }
 
-    public void OnNextButtonClick()
+    public void OnContinueButtonClick()
     {
-        if (_DataInputField.activeSelf)
+        if (_DataInputField.activeSelf) // Если активно поле ввода имени, то мы сохраняем новый результат и обновляем таблицу
         {
             int playerScore = int.Parse(_currentScoreText.text);
             string playerName = _nameInputField.text == " " ? "Безымянный игрок" : _nameInputField.text;
@@ -60,12 +62,20 @@ public class LeaderBoardController : MonoBehaviour
                     playerName, 
                     timestamp
                 ));
+            
+            SetTable((List<QuizResult>)_savingManager.GetResults());
+            _DataInputField.SetActive(false);
         }
+        else
+        {
+            _onContinue.Invoke();
+        }
+
     }
     #endregion
 
     #region private methods
-    private void PushRowToTable(QuizResult result)
+    private void PushRowToLeaderboard(QuizResult result)
     {
         GameObject row = Instantiate(_tableRowPrefab, _tableGridGroup.transform);
         TMP_Text[] textFields = row.GetComponentsInChildren<TMP_Text>();
@@ -77,7 +87,7 @@ public class LeaderBoardController : MonoBehaviour
         _currentRows.Add(row);
     }
 
-    private void ClearCurrentRows()
+    private void ClearCurrentLeaderboard()
     {
         foreach (GameObject row in _currentRows)
         {
