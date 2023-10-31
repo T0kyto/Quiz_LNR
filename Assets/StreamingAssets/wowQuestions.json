@@ -1,170 +1,50 @@
 [
   {
-    "question":  "Вопрос первый",
-    "answers": [
-      "Первый ответ",
-      "Второй ответ",
-      "Третий ответ",
-      "Четвертый ответ"
-    ],
+    "questionImagePath": "firstQuestion",
+    "decorationImagePath": "firstDecoration",
     "answerIndex": 0,
-    "info": "Пояснение к первому вопросу",
-    "infoPicturePath": "info1.jpeg"
+    "infoImagePath": "info1"
   },
   {
-    "question": "Вопрос второй",
-    "answers": [
-      "Первый ответ",
-      "Второй ответ",
-      "Третий ответ",
-      "Четвертый ответ"
-    ],
+    "questionImagePath": "firstQuestion",
+    "decorationImagePath": "firstDecoration",
     "answerIndex": 0,
-    "info": "Пояснение ко второму вопросу",
-    "infoPicturePath": "info2.jpeg"
+    "infoImagePath": "info1"
   },
   {
-    "question": "Вопрос третий",
-    "answers": [
-      "Первый ответ",
-      "Второй ответ",
-      "Третий ответ",
-      "Четвертый ответ"
-    ],
+    "questionImagePath": "firstQuestion",
+    "decorationImagePath": "firstDecoration",
     "answerIndex": 0,
-    "info": "Пояснение к третьему вопросу",
-    "infoPicturePath": ""
+    "infoImagePath": "info1"
   },
   {
-    "question": "Вопрос четвертый",
-    "answers": [
-      "Первый ответ",
-      "Второй ответ",
-      "Третий ответ",
-      "Четвертый ответ"
-    ],
+    "questionImagePath": "firstQuestion",
+    "decorationImagePath": "firstDecoration",
     "answerIndex": 0,
-    "info": "Пояснение к четвертому вопросу",
-    "infoPicturePath": "info3.jpeg"
+    "infoImagePath": "info1"
   },
   {
-  "question": "Вопрос пятый",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ], 
-  "answerIndex": 0,
-  "info": "Пояснение к пятому вопросу",
-  "infoPicturePath": ""
+    "questionImagePath": "firstQuestion",
+    "decorationImagePath": "firstDecoration",
+    "answerIndex": 0,
+    "infoImagePath": "info1"
   },
   {
-  "question": "Вопрос шестой",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к шестому вопросу",
-  "infoPicturePath": "info4.jpeg"
+    "questionImagePath": "firstQuestion",
+    "decorationImagePath": "firstDecoration",
+    "answerIndex": 0,
+    "infoImagePath": "info1"
   },
   {
-  "question": "Вопрос седьмой",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к седьмому вопросу",
-  "infoPicturePath": ""
+    "questionImagePath": "firstQuestion",
+    "decorationImagePath": "firstDecoration",
+    "answerIndex": 0,
+    "infoImagePath": "info1"
   },
   {
-  "question": "Вопрос восьмой",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к восьмому вопросу",
-  "infoPicturePath": "info5.jpeg"
-  },
-  {
-  "question": "Вопрос девятый",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к девятому вопросу",
-  "infoPicturePath": ""
-  },
-  {
-  "question": "Вопрос десятый",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к десятому вопросу",
-  "infoPicturePath": "info6.jpeg"
-  },
-  {
-  "question": "Вопрос одиннадцатый",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к одиннадцатому вопросу",
-  "infoPicturePath": ""
-  },
-  {
-  "question": "Вопрос двеннадцатый",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к двенадцатому вопросу",
-  "infoPicturePath": "info7.jpeg"
-  },
-  {
-  "question": "Вопрос четырнадцатый",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к тринадцатому вопросу",
-  "infoPicturePath": ""
-  },
-  {
-  "question": "Вопрос пятнадцатый",
-  "answers": [
-    "Первый ответ",
-    "Второй ответ",
-    "Третий ответ",
-    "Четвертый ответ"
-  ],
-  "answerIndex": 0,
-  "info": "Пояснение к четырнадцатому вопросу",
-  "infoPicturePath": "info7.jpeg"
-}
+    "questionImagePath": "firstQuestion",
+    "decorationImagePath": "firstDecoration",
+    "answerIndex": 0,
+    "infoImagePath": "info1"
+  }
 ]

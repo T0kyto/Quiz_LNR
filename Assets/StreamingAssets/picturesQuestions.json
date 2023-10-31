@@ -1,68 +1,37 @@
 [
 	{
-		"question": "Кто изображен на картинке? 1",
-		"answers": [
-			"Первый ответ",
-			"Второй ответ",
-			"Третий ответ",
-			"Четвертый ответ"
-		],
-		"answerIndex": 3,
-		"imagePath": "1q"
+		"questionImagePath": "firstQuestion",
+		"decorationImagePath": "firstDecoration",
+		"answerIndex": 0
 	},
 	{
-		"question": "Кто изображен на картинке? 2",
-		"answers": [
-			"Первый ответ",
-			"Второй ответ",
-			"Третий ответ",
-			"Четвертый ответ"
-		],
-		"answerIndex": 2,
-		"imagePath": "2q"
+		"questionImagePath": "firstQuestion",
+		"decorationImagePath": "firstDecoration",
+		"answerIndex": 0
 	},
 	{
-		"question": "Кто изображен на картинке? 3",
-		"answers": [
-			"Первый ответ",
-			"Второй ответ",
-			"Третий ответ",
-			"Четвертый ответ"
-		],
-		"answerIndex": 1,
-		"imagePath": "3q"
+		"questionImagePath": "firstQuestion",
+		"decorationImagePath": "firstDecoration",
+		"answerIndex": 0
 	},
 	{
-		"question": "Кто изображен на картинке? 4",
-		"answers": [
-			"Первый ответ",
-			"Второй ответ",
-			"Третий ответ",
-			"Четвертый ответ"
-		],
-		"answerIndex": 0,
-		"imagePath": "4q"
+		"questionImagePath": "firstQuestion",
+		"decorationImagePath": "firstDecoration",
+		"answerIndex": 0
 	},
 	{
-		"question": "Кто изображен на картинке? 5",
-		"answers": [
-			"Первый ответ",
-			"Второй ответ",
-			"Третий ответ",
-			"Четвертый ответ"
-		],
-		"answerIndex": 2,
-		"imagePath": "5q"
+		"questionImagePath": "firstQuestion",
+		"decorationImagePath": "firstDecoration",
+		"answerIndex": 0
 	},
 	{
-		"question": "Кто изображен на картинке? 6",
-		"answers": [
-			"Первый ответ",
-			"Второй ответ",
-			"Третий ответ",
-			"Четвертый ответ"
-		],
-		"answerIndex": 1,
-		"imagePath": "6q"
+		"questionImagePath": "firstQuestion",
+		"decorationImagePath": "firstDecoration",
+		"answerIndex": 0
+	},
+	{
+		"questionImagePath": "firstQuestion",
+		"decorationImagePath": "firstDecoration",
+		"answerIndex": 0
 	}
 ]

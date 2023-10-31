@@ -11,12 +11,18 @@ public class WOWQuizController : AbstractQuizController<WOWQuizQuestion>, IQuizC
         
     }
 
+    #region protected methods
+
     protected override void LoadQuizQuestions()
     {
         string questionsJsonName = (DataLoader.BuildStreamingAssetPath("wowQuestions.json"));
         List<WOWQuizQuestion> quizQuestions = DataLoader.GetListFromJSON<WOWQuizQuestion>(questionsJsonName);
         
         Debug.Log($"Loaded {quizQuestions.Count} questions from file");
+        foreach (var q in quizQuestions)
+        {
+            Debug.Log($"{q.QuestionImagePath}, {q.DecorationImagePath}, {q.InfoImagePath}, {q.AnswerIndex}");
+        }
         
         List<WOWQuizQuestion> randomizedQuestions = (DataLoader.GetRandomElements(quizQuestions, _totalQuestionsCount));
         DataLoader.Shuffle(randomizedQuestions);
@@ -44,5 +50,7 @@ public class WOWQuizController : AbstractQuizController<WOWQuizQuestion>, IQuizC
             _leaderBoardController.HideNameInputField();
         }
     }
+
+    #endregion
 
 }

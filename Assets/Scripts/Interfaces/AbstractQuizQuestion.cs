@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class AbstractQuizQuestion
 {
-    private readonly string _question;
-    private readonly string[] _answers;
-
-    public string Question => _question;
-    public string[] Answers => _answers;
-
-    public AbstractQuizQuestion(string question, string[] answers)
+    public AbstractQuizQuestion(string questionImagePath)
     {
-        this._question = question;
-        this._answers = answers;
+        this._questionImagePath = questionImagePath;
     }
+    
+    private readonly string _questionImagePath;
+
+    public string QuestionImagePath => _questionImagePath;
     
 }

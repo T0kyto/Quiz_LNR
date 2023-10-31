@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 
 public class GlobalController : MonoBehaviour
 {
@@ -10,16 +9,16 @@ public class GlobalController : MonoBehaviour
     [SerializeField] private WowQuizView _wowQuizView;
     [SerializeField] private LeaderBoardController _leaderBoardController;
 
+    #region public methods
+
     public void OnStartWOWQuizClick()
     {
         _currentQuizController = new WOWQuizController(_wowQuizView);
         _wowQuizView.gameObject.SetActive(true);
         _wowQuizView.GetComponent<AlphaTransition>().StartFadeIn();
-        _currentQuizController.StartNewGame();
         _wowQuizView.SetQuizController((WOWQuizController)_currentQuizController);
         _currentQuizController.SetLeaderBoardController(_leaderBoardController);
-        GetComponent<AlphaTransition>().StartFadeOut();
-        gameObject.SetActive(false);
+        StartCoroutine(FadeOutCoroutine());
     }
 
     public void OnStartPicturesQuizClick()
@@ -27,10 +26,22 @@ public class GlobalController : MonoBehaviour
         _currentQuizController = new PicturesQuizController(_picturesQuizView);
         _picturesQuizView.gameObject.SetActive(true);
         _picturesQuizView.GetComponent<AlphaTransition>().StartFadeIn();
-        _currentQuizController.StartNewGame();
         _picturesQuizView.SetQuizController((PicturesQuizController)_currentQuizController);
         _currentQuizController.SetLeaderBoardController(_leaderBoardController);
-        GetComponent<AlphaTransition>().StartFadeOut();
-        gameObject.SetActive(false);
+        StartCoroutine(FadeOutCoroutine());
     }
+
+    #endregion
+
+    #region private methods
+
+    private IEnumerator FadeOutCoroutine()
+    {
+        GetComponent<AlphaTransition>().StartFadeOut();
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
+        _currentQuizController.StartNewGame();
+    }
+
+    #endregion
 }

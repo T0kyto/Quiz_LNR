@@ -6,7 +6,7 @@ public abstract class AbstractQuizController<T> where T : AbstractQuizQuestion
 {
     protected AbstractQuizView AbstractQuizView;
     protected List<T> _quizQuestions;
-    protected int _currentQuestionIndex;
+    private int _currentQuestionIndex;
     protected int _currentScore = 0;
     protected ResultSavingManager _resultSavingManager;
     protected LeaderBoardController _leaderBoardController;
@@ -19,7 +19,6 @@ public abstract class AbstractQuizController<T> where T : AbstractQuizQuestion
         LoadQuizQuestions();
     }
     
-
     public void StartNewGame()
     {
         if (_quizQuestions.Count == 0)

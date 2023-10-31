@@ -11,8 +11,9 @@ public class CustomButton : MonoBehaviour
     private Button _button;
     private TMP_Text _buttonText;
 
-    [SerializeField] private Color _rightAnswerColor;
-    [SerializeField] private Color _wrongAnswerColor;
+    [SerializeField] private Sprite _defaultImage;
+    [SerializeField] private Sprite _correctImage;
+    [SerializeField] private Sprite _uncorrectSprite;
 
     private void Awake()
     {
@@ -36,19 +37,23 @@ public class CustomButton : MonoBehaviour
         rectTransform.sizeDelta = size;
     }
 
-    private void SetOnClickFunction(Action action)
+    public void SetOnClickFunction(Action action)
     {
         _button.onClick.AddListener(() => action());
     }
 
-    public void InitButton(string text, Action action)
+    public void setUncorrectSprite()
     {
-        SetButtonText(text);
-        SetOnClickFunction(action);
+        _button.image.sprite = _uncorrectSprite;
     }
 
-    public void SetAnswerColor(bool isRightAnswer)
+    public void setCorrectSprite()
     {
-        _button.GetComponent<Image>().color =  !isRightAnswer ? _rightAnswerColor : _wrongAnswerColor;
+        _button.image.sprite = _correctImage;
+    }
+
+    public void setDefaultSprite()
+    {
+        _button.image.sprite = _defaultImage;
     }
 }

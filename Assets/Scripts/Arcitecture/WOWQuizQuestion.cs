@@ -1,16 +1,18 @@
 public class WOWQuizQuestion: AbstractQuizQuestion
 {
-    public WOWQuizQuestion(string question, string[] answers, string info, string infoPicturePath) : base(question, answers)
+    public WOWQuizQuestion(string questionImagePath, int answerIndex, string decorationImagePath, string infoImagePath) : base(questionImagePath)
     {
-        _info = info;
-        _infoPicturePath = infoPicturePath;
+        _answerIndex = answerIndex;
+        _decorationImagePath = decorationImagePath;
+        _infoImagePath = infoImagePath;
     }
-
+    
+    
+    private string _decorationImagePath;
     private int _answerIndex;
-    private string _info;
-    private string _infoPicturePath;
+    private string _infoImagePath;
     
     public int AnswerIndex => _answerIndex;
-    public string Info => _info;
-    public string InfoPicturePath => _infoPicturePath;
+    public string DecorationImagePath => _decorationImagePath;
+    public string InfoImagePath => _infoImagePath;
 }

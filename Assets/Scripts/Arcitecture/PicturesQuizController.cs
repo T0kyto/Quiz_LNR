@@ -5,10 +5,11 @@ public class PicturesQuizController : AbstractQuizController<PicturesQuizQuestio
 {
     private string _resultFilePath = "picturesResult.json";
     private int _totalQuestionsCount = 7;
-    public PicturesQuizController(AbstractQuizView abstractQuizView) : base(abstractQuizView)
-    {
-        
-    }
+    
+    public PicturesQuizController(AbstractQuizView abstractQuizView) : base(abstractQuizView) {}
+
+    #region protected methods
+
     protected override void LoadQuizQuestions()
     {
         string questionsJsonName = (DataLoader.BuildStreamingAssetPath("picturesQuestions.json"));
@@ -43,5 +44,7 @@ public class PicturesQuizController : AbstractQuizController<PicturesQuizQuestio
             _leaderBoardController.HideNameInputField();
         }
     }
+
+    #endregion
 }
 

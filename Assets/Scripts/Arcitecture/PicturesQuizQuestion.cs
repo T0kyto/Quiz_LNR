@@ -1,14 +1,14 @@
 public class PicturesQuizQuestion: AbstractQuizQuestion
 {
-    public PicturesQuizQuestion(string question, string[] answers, int answerIndex, string imagePath) : base(question, answers)
+    public PicturesQuizQuestion(string questionImagePath, int answerIndex, string decorationImagePath) : base(questionImagePath)
     {
-        this._answerIndex = answerIndex;
-        this._imagePath = imagePath;
+        _answerIndex = answerIndex;
+        _decorationImagePath = decorationImagePath;
     }
-
-    private readonly int _answerIndex;
-    private readonly string _imagePath;
+    
+    private string _decorationImagePath;
+    private int _answerIndex;
     
     public int AnswerIndex => _answerIndex;
-    public string ImagePath => _imagePath;
+    public string DecorationImagePath => _decorationImagePath;
 }
