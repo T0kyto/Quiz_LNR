@@ -24,7 +24,7 @@ public class WowQuizView : AbstractQuizView
         SetQuestionDecoration(q.DecorationImagePath, _decorationsFolder);
         _infoLayoutController.SetInfoLayout(infoFolder, q.InfoImagePath);
         UpdateAnswerButtons(q.AnswerIndex);
-        _questionSectionAnimator.ToggleState();
+        _questionSectionAnimator.SetActiveState();
         
     }
     
@@ -34,19 +34,25 @@ public class WowQuizView : AbstractQuizView
         {
             return;
         }
+
+        if (!_quizController.IsQuestionsRemains() && _isQuestionInfoShown)
+        {
+            _quizController.SetNewQuestion();
+            Debug.Log("Last question");
+            return;
+        }
         
         if(_isQuestionInfoShown)
         {
-            _questionInfoAnimator.ToggleState();
+            _questionInfoAnimator.SetUnactiveState();
             _quizController.SetNewQuestion();
-            _nextQuestionButton.ToggleState();  
+            _nextQuestionButton.SetUnactiveState();
         }
         else
         {
             _isQuestionInfoShown = true;
-            _questionSectionAnimator.ToggleState();
-            _questionInfoAnimator.ToggleState();
-                      
+            _questionSectionAnimator.SetUnactiveState();
+            _questionInfoAnimator.SetActiveState();
         }
     }
 

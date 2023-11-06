@@ -15,6 +15,8 @@ public class CustomButton : MonoBehaviour
     [SerializeField] private Sprite _correctImage;
     [SerializeField] private Sprite _uncorrectSprite;
 
+    [SerializeField] private Image _checkBoxImage;
+
     private void Awake()
     {
         _button = GetComponent<Button>();
@@ -42,18 +44,25 @@ public class CustomButton : MonoBehaviour
         _button.onClick.AddListener(() => action());
     }
 
-    public void setUncorrectSprite()
+    public void SetUncorrectSprite()
     {
-        _button.image.sprite = _uncorrectSprite;
+        _checkBoxImage.sprite = _uncorrectSprite;
+        _checkBoxImage.GetComponent<CanvasGroup>().alpha = 1;
     }
 
-    public void setCorrectSprite()
+    public void SetCorrectSprite()
     {
-        _button.image.sprite = _correctImage;
+        _checkBoxImage.sprite = _correctImage;
+        _checkBoxImage.GetComponent<CanvasGroup>().alpha = 1;
+    }
+
+    public void SetTransparent()
+    {
+        _checkBoxImage.GetComponent<CanvasGroup>().alpha = 0;
     }
 
     public void setDefaultSprite()
     {
-        _button.image.sprite = _defaultImage;
+        _checkBoxImage.sprite = _defaultImage;
     }
 }

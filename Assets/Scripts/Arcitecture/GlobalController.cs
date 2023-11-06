@@ -8,7 +8,7 @@ public class GlobalController : MonoBehaviour
     [SerializeField] private PicturesQuizView _picturesQuizView;
     [SerializeField] private WowQuizView _wowQuizView;
     [SerializeField] private LeaderBoardController _leaderBoardController;
-
+    
     #region public methods
 
     public void OnStartWOWQuizClick()
@@ -18,6 +18,7 @@ public class GlobalController : MonoBehaviour
         _wowQuizView.GetComponent<AlphaTransition>().StartFadeIn();
         _wowQuizView.SetQuizController((WOWQuizController)_currentQuizController);
         _currentQuizController.SetLeaderBoardController(_leaderBoardController);
+        /*_currentQuizController.StartNewGame();*/
         StartCoroutine(FadeOutCoroutine());
     }
 
@@ -28,7 +29,26 @@ public class GlobalController : MonoBehaviour
         _picturesQuizView.GetComponent<AlphaTransition>().StartFadeIn();
         _picturesQuizView.SetQuizController((PicturesQuizController)_currentQuizController);
         _currentQuizController.SetLeaderBoardController(_leaderBoardController);
+        /*_currentQuizController.StartNewGame();*/
         StartCoroutine(FadeOutCoroutine());
+    }
+
+    public void ExitWOWQuiz()
+    {
+        _wowQuizView.GetComponent<AlphaTransition>().StartFadeOut();
+        StartCoroutine(FadeInCoroutine(_wowQuizView));
+    }
+
+    public void ExitPicturesQuiz()
+    {
+        _picturesQuizView.GetComponent<AlphaTransition>().StartFadeOut();
+        StartCoroutine(FadeInCoroutine(_picturesQuizView));
+    }
+
+    public void ExitLeaderboard()
+    {
+        GetComponent<AlphaTransition>().StartFadeIn();
+        StartCoroutine(DisableLeaderboard());
     }
 
     #endregion
@@ -41,6 +61,21 @@ public class GlobalController : MonoBehaviour
         yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
         _currentQuizController.StartNewGame();
+    }
+
+    private IEnumerator FadeInCoroutine(AbstractQuizView view) 
+    {
+        gameObject.SetActive(true);
+        GetComponent<AlphaTransition>().StartFadeIn();
+        yield return new WaitForSeconds(1);
+        view.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DisableLeaderboard()
+    {
+        yield return new WaitForSeconds(1);
+        _leaderBoardController.GetComponent<AlphaTransition>().SetTransparent();
+        _leaderBoardController.gameObject.SetActive(false);
     }
 
     #endregion

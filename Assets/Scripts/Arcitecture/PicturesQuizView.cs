@@ -18,7 +18,8 @@ public class PicturesQuizView : AbstractQuizView
         SetQuestionText(q.QuestionImagePath, _questionsFolder);
         SetQuestionDecoration(q.DecorationImagePath, _decorationsFolder);
         UpdateAnswerButtons(q.AnswerIndex);
-        _questionSectionAnimator.ToggleState();
+        _questionSectionAnimator.SetActiveState();
+        
     }
     
     public override void SetNextSection()

@@ -27,21 +27,22 @@ public class PicturesQuizController : AbstractQuizController<PicturesQuizQuestio
     protected override void OnQuesionsEnds()
     {
         _resultSavingManager = new ResultSavingManager(_resultFilePath);
-        
-        AbstractQuizView.gameObject.SetActive(false);
-        _leaderBoardController.SetLeaderBoard((List<QuizResult>)_resultSavingManager.GetResults());
+        _leaderBoardController.SetLeaderBoard((List<QuizResult>)_resultSavingManager.GetResults(), _currentScore);
         _leaderBoardController.gameObject.SetActive(true);
+        _leaderBoardController.SetLightBackground();
+        
+        _leaderBoardController.GetComponent<AlphaTransition>().StartFadeIn();
+        AbstractQuizView.FadeOutDisabling();
         
         if (_resultSavingManager.IsScoreInTop(_currentScore)) // Если текущий набранный счет попадает в таблицу лидеров
         {
             Debug.Log("Saving data");
-            
-            _leaderBoardController.ShowNameInputField(_currentScore);
             _leaderBoardController.SetSavingManager(_resultSavingManager);
+            _leaderBoardController.ShowNameInput(_currentScore);
         }
         else
         {
-            _leaderBoardController.HideNameInputField();
+            _leaderBoardController.ShowLeaderBoard(_currentScore);
         }
     }
 

@@ -7,4 +7,8 @@ public interface IQuizController
     public void SetLeaderBoardController(LeaderBoardController lbController);
 
     public void IncreaseScore();
+    public void IncreaseTimer(float value);
+    public void ResetTimer();
+
+    public bool IsQuestionsRemains();
 }

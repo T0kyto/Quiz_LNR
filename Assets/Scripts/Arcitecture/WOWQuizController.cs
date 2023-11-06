@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,7 @@ public class WOWQuizController : AbstractQuizController<WOWQuizQuestion>, IQuizC
 {
     private string _resultFilePath = "WOWResults.json";
     private int _totalQuestionsCount = 10;
-    public WOWQuizController(AbstractQuizView abstractQuizView): base(abstractQuizView)
-    {
-        
-    }
+    public WOWQuizController(AbstractQuizView abstractQuizView): base(abstractQuizView) {}
 
     #region protected methods
 
@@ -31,23 +29,27 @@ public class WOWQuizController : AbstractQuizController<WOWQuizQuestion>, IQuizC
         _quizQuestions = quizQuestions;
     }
 
+  
+
     protected override void OnQuesionsEnds()
     {
         _resultSavingManager = new ResultSavingManager(_resultFilePath);
-        
-        AbstractQuizView.gameObject.SetActive(false);
-        _leaderBoardController.SetLeaderBoard((List<QuizResult>)_resultSavingManager.GetResults());
+        _leaderBoardController.SetLeaderBoard((List<QuizResult>)_resultSavingManager.GetResults(), _currentScore);
         _leaderBoardController.gameObject.SetActive(true);
+        _leaderBoardController.SetDarkBackground();
+        
+        _leaderBoardController.GetComponent<AlphaTransition>().StartFadeIn();
+        AbstractQuizView.FadeOutDisabling();
         
         if (_resultSavingManager.IsScoreInTop(_currentScore)) // Если текущий набранный счет попадает в таблицу лидеров
         {
             Debug.Log("Saving data");
-            _leaderBoardController.ShowNameInputField(_currentScore);
             _leaderBoardController.SetSavingManager(_resultSavingManager);
+            _leaderBoardController.ShowNameInput(_currentScore);
         }
         else
         {
-            _leaderBoardController.HideNameInputField();
+            _leaderBoardController.ShowLeaderBoard(_currentScore);
         }
     }
 

@@ -134,5 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultImage: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  _correctImage: {fileID: -1182442716, guid: 66c9882b985ab4b47b667510d1c49701, type: 3}
-  _uncorrectSprite: {fileID: -1593428646, guid: 66c9882b985ab4b47b667510d1c49701, type: 3}
+  _correctImage: {fileID: 21300000, guid: a1980486dbe634e4996ad85a115fd9fb, type: 3}
+  _uncorrectSprite: {fileID: 21300000, guid: 946b6dacfc2c1cd4faa7cab8ed1c9872, type: 3}
+  _checkBoxImage: {fileID: 0}

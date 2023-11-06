@@ -1,21 +1,29 @@
+using System;
+using System.Collections;
 using AwakeSolutions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class AbstractQuizView: MonoBehaviour
 {
     [SerializeField] protected UIAnimationController _nextQuestionButton;
-    [SerializeField] protected TMP_Text _questionCounter;
+    /*[SerializeField] protected TMP_Text _questionCounter;*/
     [SerializeField] protected TMP_Text _questionNumber;
     [SerializeField] protected AwakeMediaPlayer _questionDecortaion;
     [SerializeField] protected AwakeMediaPlayer _questionTextImage;
     [SerializeField] protected UIAnimationController _questionSectionAnimator;
+    [SerializeField] protected AlphaTransition _alphaTransition;
     
     protected IQuizController _quizController;
     protected int _correctAnswer;
     protected bool _isCurrentQuestionAnswered = false;
 
     [SerializeField] protected CustomButton[] _answerButtons;
+    public UnityEvent OnTimerEnds;
+    /*private float _timer;
+    private bool _isExited = false;
+    public float TotalTime;*/
 
     #region abstract methods
 
@@ -25,21 +33,36 @@ public abstract class AbstractQuizView: MonoBehaviour
     #endregion
 
     #region public methods
+    
 
     public void SetQuestionCounterText(int questionAmount, int currentQuestionId)
     {
-        _questionCounter.text = $"{currentQuestionId + 1}/{questionAmount}";
         _questionNumber.text = $"ВОПРОС № {currentQuestionId + 1}";
     }
 
     public void SetQuizController(IQuizController controller)
     {
         _quizController = controller;
+        /*_isExited = false;*/
     }
+
+    public void FadeOutDisabling()
+    {
+        StartCoroutine(FadeOutDisablingCoroutine());
+    }
+    
+    
 
     #endregion
 
     #region protected methods
+
+    protected IEnumerator FadeOutDisablingCoroutine()
+    {
+        /*_alphaTransition.StartFadeOut(2);*/
+        yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
+    }
 
     protected void SetQuestionText(string filename, string folderName)
     {
@@ -61,14 +84,20 @@ public abstract class AbstractQuizView: MonoBehaviour
         
         foreach (CustomButton button in _answerButtons)
         {
-            Debug.Log("set to default");
             button.setDefaultSprite();
+            button.SetTransparent();
         }
     }
 
     #endregion
 
     #region private methods
+
+    private void Update()
+    {
+        _quizController.IncreaseTimer(Time.deltaTime);
+    }
+
 
     private void OnAnswerButtonClick(int clickedIndex)
     {
@@ -83,14 +112,14 @@ public abstract class AbstractQuizView: MonoBehaviour
         }
         
         _isCurrentQuestionAnswered = true;
-        _nextQuestionButton.ToggleState();
+        _nextQuestionButton.SetActiveState();
         
         if(clickedIndex == _correctAnswer){
-            _answerButtons[clickedIndex].setCorrectSprite();
+            _answerButtons[clickedIndex].SetCorrectSprite();
             Debug.Log("Correct clicked");            
         }else{
-            _answerButtons[clickedIndex].setUncorrectSprite();
-            _answerButtons[_correctAnswer].setCorrectSprite();
+            _answerButtons[clickedIndex].SetUncorrectSprite();
+            _answerButtons[_correctAnswer].SetCorrectSprite();
             Debug.Log("uncorrect clicked");
         }
         
